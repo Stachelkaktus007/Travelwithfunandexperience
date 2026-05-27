@@ -64,7 +64,7 @@ function createDestinationCard(destination) {
   const card = document.createElement('div');
   card.className = 'card';
   card.innerHTML = `
-    <div class="card-image">${destination.image}</div>
+    <div class="card-image" style="background-image: url('${destination.image}'); background-size: cover; background-position: center;"></div>
     <div class="card-content">
       <h3 class="card-title">${destination.name}</h3>
       <p class="card-subtitle">${destination.country}</p>
@@ -91,11 +91,11 @@ function renderActivities(activityList) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <div class="card-image">${activity.icon}</div>
+      <div class="card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-size: 3rem; display: flex; align-items: center; justify-content: center;">${activity.icon}</div>
       <div class="card-content">
         <h3 class="card-title">${activity.name}</h3>
         <p class="card-description">${activity.description}</p>
-        <div style="margin: 0.8rem 0;">
+        <div style="margin: 0.8rem 0; font-size: 0.9rem; color: var(--text-light);">
           <strong>Schwierigkeit:</strong> ${activity.difficulty}<br>
           <strong>Dauer:</strong> ${activity.duration}<br>
           <strong>Preis:</strong> ${activity.price}
@@ -117,7 +117,7 @@ function renderRestaurants(restaurantList) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <div class="card-image">🍽️</div>
+      <div class="card-image" style="background: linear-gradient(135deg, #f7a072 0%, #d76a3e 100%); font-size: 3rem; display: flex; align-items: center; justify-content: center;">🍽️</div>
       <div class="card-content">
         <h3 class="card-title">${restaurant.name}</h3>
         <p class="card-subtitle">${destination.name} - ${restaurant.cuisine}</p>
@@ -141,7 +141,7 @@ function renderAccommodations(accommodationList) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <div class="card-image">🏨</div>
+      <div class="card-image" style="background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); font-size: 3rem; display: flex; align-items: center; justify-content: center;">🏨</div>
       <div class="card-content">
         <h3 class="card-title">${accommodation.name}</h3>
         <p class="card-subtitle">${destination.name} - ${accommodation.type}</p>
@@ -168,7 +168,7 @@ function renderPopularDestinations() {
   popular.forEach(dest => {
     html += `
       <div class="popular-item" onclick="searchAndFilter('${dest.name}')">
-        <div class="popular-icon">${dest.image}</div>
+        <div class="popular-icon" style="background-image: url('${dest.image}'); background-size: cover; background-position: center; width: 100%; height: 120px; border-radius: 8px; margin-bottom: 0.8rem;"></div>
         <div class="popular-name">${dest.name}</div>
         <div class="popular-info">${dest.country}</div>
       </div>
@@ -269,55 +269,57 @@ function showDestinationDetails(destination) {
   const modalContent = document.querySelector('.modal-content');
   modalContent.innerHTML = `
     <span class="close-btn">&times;</span>
-    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
-      <div>
-        <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">${destination.image} ${destination.name}</h2>
+    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem; gap: 2rem;">
+      <div style="flex: 1;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--primary-color);">${destination.name}</h2>
         <p style="font-size: 1.1rem; color: var(--text-light);">${destination.country}, ${destination.continent}</p>
       </div>
-      <span style="font-size: 1.1rem; color: var(--secondary-color); font-weight: bold;">${destination.price}</span>
+      <span style="font-size: 1.1rem; color: var(--accent-color); font-weight: bold; white-space: nowrap;">${destination.price}</span>
     </div>
 
-    <p style="font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">${destination.description}</p>
+    <div style="width: 100%; height: 300px; background-image: url('${destination.image}'); background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 2rem;"></div>
+
+    <p style="font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6; color: var(--text-dark);">${destination.description}</p>
 
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2rem;">
-      <div style="background: var(--light-bg); padding: 1rem; border-radius: 5px;">
-        <strong>Bewertung</strong><br>
+      <div style="background: var(--light-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-color);">
+        <strong style="color: var(--primary-color);">Bewertung</strong><br>
         <span class="stars">${'★'.repeat(Math.round(destination.rating))}${'☆'.repeat(5 - Math.round(destination.rating))}</span>
-        <br>${destination.rating}/5 (${destination.reviews} Bewertungen)
+        <br><span style="color: var(--text-light);">${destination.rating}/5 (${destination.reviews} Bewertungen)</span>
       </div>
-      <div style="background: var(--light-bg); padding: 1rem; border-radius: 5px;">
-        <strong>Popularität</strong><br>
-        ${'⭐'.repeat(destination.popularity/2)}
+      <div style="background: var(--light-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--secondary-color);">
+        <strong style="color: var(--primary-color);">Popularität</strong><br>
+        <span style="color: var(--text-light);">${'⭐'.repeat(Math.round(destination.popularity/2))}</span>
       </div>
     </div>
 
-    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">🎯 Aktivitäten</h3>
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--primary-color);">🎯 Aktivitäten</h3>
     <div class="card-tags" style="margin-bottom: 2rem;">
       ${destination.activities.map(activity => `<span class="tag">${activity}</span>`).join('')}
     </div>
 
     ${accommodationsForDest.length > 0 ? `
-      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">🏨 Unterkünfte</h3>
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--primary-color);">🏨 Unterkünfte</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         ${accommodationsForDest.map(acc => `
-          <div style="background: var(--light-bg); padding: 1rem; border-radius: 5px; border-left: 4px solid var(--accent-color);">
-            <strong>${acc.name}</strong><br>
-            <span style="color: var(--text-light);">${acc.type}</span><br>
-            <span class="stars">${'★'.repeat(acc.stars)}${'☆'.repeat(5 - acc.stars)}</span> ${acc.rating}/5<br>
-            <span style="font-weight: bold; color: var(--secondary-color);">€${acc.price}/Nacht</span>
+          <div style="background: var(--light-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--secondary-color);">
+            <strong style="color: var(--primary-color);">${acc.name}</strong><br>
+            <span style="color: var(--text-light); font-size: 0.9rem;">${acc.type}</span><br>
+            <span class="stars">${'★'.repeat(acc.stars)}${'☆'.repeat(5 - acc.stars)}</span> <span style="color: var(--text-light);">${acc.rating}/5</span><br>
+            <span style="font-weight: bold; color: var(--accent-color);">€${acc.price}/Nacht</span>
           </div>
         `).join('')}
       </div>
     ` : ''}
 
     ${restaurantsForDest.length > 0 ? `
-      <h3 style="margin-top: 2rem; margin-bottom: 1rem;">🍽️ Restaurants</h3>
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--primary-color);">🍽️ Restaurants</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         ${restaurantsForDest.map(rest => `
-          <div style="background: var(--light-bg); padding: 1rem; border-radius: 5px; border-left: 4px solid var(--success-color);">
-            <strong>${rest.name}</strong><br>
-            <span style="color: var(--text-light);">${rest.cuisine}</span><br>
-            <span class="stars">${'★'.repeat(Math.round(rest.rating))}${'☆'.repeat(5 - Math.round(rest.rating))}</span> ${rest.rating}/5<br>
+          <div style="background: var(--light-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--success-color);">
+            <strong style="color: var(--primary-color);">${rest.name}</strong><br>
+            <span style="color: var(--text-light); font-size: 0.9rem;">${rest.cuisine}</span><br>
+            <span class="stars">${'★'.repeat(Math.round(rest.rating))}${'☆'.repeat(5 - Math.round(rest.rating))}</span> <span style="color: var(--text-light);">${rest.rating}/5</span><br>
             <span style="font-weight: bold;">Preis: ${rest.price}</span>
           </div>
         `).join('')}
