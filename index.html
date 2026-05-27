@@ -1,8 +1,117 @@
-<!doctype html>
-<html>
-  <head><title>Meine Seite</title></head>
-  <body>
-    <h1>Hallo Welt</h1>
-    <p>Das ist meine erste Webseite.</p>
-  </body>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel with Fun and Experience - Reiseabenteuer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">✈️ Travel with Fun</a>
+            <ul class="nav-links">
+                <li><a href="#home">Startseite</a></li>
+                <li><a href="#destinations">Ziele</a></li>
+                <li><a href="#activities">Aktivitäten</a></li>
+                <li><a href="#restaurants">Essen</a></li>
+                <li><a href="#accommodations">Unterkünfte</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <h1>Entdecke die Welt 🌍</h1>
+        <p>Finde Inspiration für dein nächstes Abenteuer und erlebe unvergessliche Momente</p>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="search-container">
+        <div class="search-box">
+            <div class="search-row">
+                <input type="text" id="searchInput" class="search-input" placeholder="Suche Ziele, Länder...">
+                <select id="continentFilter" class="search-select">
+                    <option value="all">Alle Kontinente</option>
+                </select>
+                <select id="priceFilter" class="search-select">
+                    <option value="all">Alle Preiskategorien</option>
+                    <option value="budget">Budget (€ - €€)</option>
+                    <option value="medium">Mittel (€€ - €€€)</option>
+                    <option value="luxury">Luxus (€€€ - €€€€)</option>
+                </select>
+                <select id="activityFilter" class="search-select">
+                    <option value="all">Alle Aktivitäten</option>
+                    <option value="1">Tauchen</option>
+                    <option value="2">Wanderungen</option>
+                    <option value="3">Schnorcheln</option>
+                    <option value="4">Gleitschirmfliegen</option>
+                    <option value="5">Kulinarische Tours</option>
+                    <option value="6">Kulturelle Besichtigungen</option>
+                    <option value="7">Yoga & Wellness</option>
+                    <option value="8">Shopping</option>
+                </select>
+                <button id="searchBtn" class="search-btn">Suchen</button>
+            </div>
+            <div class="filter-tags"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Popular Destinations -->
+        <section id="home">
+            <h2>🌟 Beliebte Reiseziele</h2>
+            <div id="popularDestinations"></div>
+        </section>
+
+        <!-- Destinations -->
+        <section id="destinations">
+            <h2>🗺️ Reiseziele entdecken</h2>
+            <div id="destinationsGrid" class="card-grid"></div>
+        </section>
+
+        <!-- Activities -->
+        <section id="activities">
+            <h2>🎯 Aktivitäten & Abenteuer</h2>
+            <div id="activitiesGrid" class="card-grid"></div>
+        </section>
+
+        <!-- Restaurants -->
+        <section id="restaurants">
+            <h2>🍽️ Essensmöglichkeiten</h2>
+            <div id="restaurantsGrid" class="card-grid"></div>
+        </section>
+
+        <!-- Accommodations -->
+        <section id="accommodations">
+            <h2>🏨 Unterkünfte & Übernachtungen</h2>
+            <div id="accommodationsGrid" class="card-grid"></div>
+        </section>
+    </div>
+
+    <!-- Modal for Details -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <!-- Content wird dynamisch geladen -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Travel with Fun and Experience - Deine Plattform für Reiseabenteuer</p>
+        <div class="footer-links">
+            <a href="#about">Über uns</a>
+            <a href="#contact">Kontakt</a>
+            <a href="#privacy">Datenschutz</a>
+            <a href="#terms">Nutzungsbedingungen</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
